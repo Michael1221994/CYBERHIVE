@@ -8,7 +8,7 @@
     --bg: #030305;
     --bg-alt: #07070d;
     --bg-surface: rgba(12, 12, 22, 0.75);
-    --bg-card: rgba(18, 18, 32, 0.55);
+    --bg-card: rgba(18, 18, 32, 0.65);
     --border-subtle: rgba(255, 255, 255, 0.08);
     --border-bright: rgba(245, 158, 11, 0.35);
 
@@ -42,12 +42,6 @@
 @property --bento-angle {
     syntax: '<angle>';
     initial-value: 0deg;
-    inherits: false;
-}
-
-@property --hud-scan {
-    syntax: '<percentage>';
-    initial-value: 0%;
     inherits: false;
 }
 
@@ -161,7 +155,7 @@ button {
     height: 100%;
     pointer-events: none;
     z-index: 9990;
-    opacity: 0.045;
+    opacity: 0.04;
     background-repeat: repeat;
     background-size: 340px 340px;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grainNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grainNoise)'/%3E%3C/svg%3E");
@@ -173,7 +167,7 @@ button {
 @media (min-resolution: 2dppx)    { .film-grain { background-size: 170px 170px; } }
 @media (min-resolution: 3dppx)    { .film-grain { background-size: 113px 113px; } }
 
-/* Electromagnetic Flux Rays (God Rays) */
+/* Electromagnetic Flux Rays */
 #god-rays {
     position: fixed;
     top: -25%;
@@ -183,7 +177,7 @@ button {
     height: 140%;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.04;
+    opacity: 0.035;
     background: conic-gradient(
         from 180deg at 50% 10%,
         rgba(245, 158, 11, 0.9) 0deg,
@@ -283,7 +277,7 @@ body.fast-scroll .letterbox { height: 26px; }
     z-index: 10000;
     transform: translate(-50%, -50%);
     mix-blend-mode: difference;
-    transition: opacity 0.3s, transform 0.15s ease;
+    transition: opacity 0.3s;
 }
 #cursor-ring {
     position: fixed;
@@ -428,26 +422,23 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.6rem 5vw;
+    padding: 1.1rem 5vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 500;
-    transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
-}
-nav.scrolled {
     background: rgba(3, 3, 6, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-subtle);
-    padding: 1.1rem 5vw;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.3s, padding 0.3s;
 }
 .brand-logo {
     display: flex;
     align-items: center;
     gap: 12px;
     font-family: var(--font-head);
-    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -469,13 +460,13 @@ nav.scrolled {
 .nav-telemetry {
     display: flex;
     align-items: center;
-    gap: 1.8rem;
+    gap: 1.2rem;
 }
 .telemetry-pill {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 0.4rem 0.9rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-subtle);
@@ -505,12 +496,12 @@ nav.scrolled {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 0.5rem 1.1rem;
+    padding: 0.45rem 1rem;
     border-radius: 100px;
     background: rgba(245, 158, 11, 0.08);
     border: 1px solid rgba(245, 158, 11, 0.25);
     font-family: var(--font-num);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     color: var(--amber-bright);
@@ -570,7 +561,7 @@ nav.scrolled {
 #mobile-menu {
     position: fixed;
     inset: 0;
-    background: rgba(3, 3, 6, 0.97);
+    background: rgba(3, 3, 6, 0.98);
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
     z-index: 600;
@@ -618,7 +609,7 @@ nav.scrolled {
 }
 
 section {
-    padding: 18vh 6vw;
+    padding: 14vh 6vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -628,16 +619,16 @@ section {
 
 .kicker {
     font-family: var(--font-num);
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 700;
     color: var(--amber-bright);
-    letter-spacing: 0.35em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 0.55rem 1.4rem;
+    padding: 0.45rem 1.2rem;
     border-radius: 100px;
     background: rgba(245, 158, 11, 0.06);
     border: 1px solid rgba(245, 158, 11, 0.2);
@@ -655,7 +646,7 @@ section {
 
 h2 {
     font-family: var(--font-head);
-    font-size: clamp(2.2rem, 5.5vw, 4.8rem);
+    font-size: clamp(2rem, 4.5vw, 4.2rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;
@@ -664,38 +655,37 @@ h2 {
 }
 
 .section-divider {
-    width: 120px;
+    width: 100px;
     height: 2px;
     background: linear-gradient(90deg, var(--amber), transparent);
-    margin: 1.5rem 0 2.5rem;
+    margin: 1.2rem 0 2rem;
 }
 
 /* --- Hero Section --- */
 #hero {
     min-height: 100vh;
-    padding: 0 6vw 8vh;
+    padding: max(130px, 15vh) 6vw 7vh;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
-    pointer-events: none;
-}
-#hero > * {
-    pointer-events: auto;
+    position: relative;
 }
 .hero-content {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 4vw;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 3.5vw;
     align-items: flex-end;
     border-top: 1px solid var(--border-subtle);
-    padding-top: 4vh;
+    padding-top: 3.5vh;
 }
 .hero-title {
     font-family: var(--font-head);
-    font-size: clamp(2.8rem, 7vw, 7.5rem);
+    font-size: clamp(2.4rem, 5.8vw, 6.4rem);
     font-weight: 700;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 .hero-title span.glow-amber {
     color: var(--amber-bright);
@@ -706,20 +696,20 @@ h2 {
     text-shadow: 0 0 35px rgba(6, 182, 212, 0.5);
 }
 .hero-lead {
-    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
     color: var(--text-muted);
     font-weight: 500;
-    line-height: 1.7;
+    line-height: 1.65;
     max-width: 520px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Live Interactive EMF Controller inside Hero */
 .hero-emf-panel {
-    background: rgba(14, 14, 26, 0.7);
+    background: rgba(14, 14, 26, 0.75);
     border: 1px solid rgba(245, 158, 11, 0.2);
     border-radius: 16px;
-    padding: 2rem;
+    padding: 1.8rem 2rem;
     backdrop-filter: blur(20px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -727,7 +717,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 .emf-title {
     font-family: var(--font-num);
@@ -739,13 +729,13 @@ h2 {
 }
 .emf-readout {
     font-family: var(--font-num);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #fff;
 }
 .emf-slider-wrap {
     position: relative;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 input[type="range"].emf-range {
     -webkit-appearance: none;
@@ -783,20 +773,20 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 .emf-cta-row {
     display: flex;
     gap: 1rem;
-    margin-top: 1.6rem;
+    margin-top: 1.4rem;
 }
 .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 1rem 2rem;
+    padding: 0.9rem 1.8rem;
     border-radius: 100px;
     background: #fff;
     color: #000;
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
@@ -811,14 +801,14 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 1rem 1.8rem;
+    padding: 0.9rem 1.6rem;
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border-subtle);
     color: #fff;
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     transition: background 0.3s, border-color 0.3s, transform 0.2s;
@@ -837,11 +827,11 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 }
 .manifesto-lead {
     font-family: var(--font-head);
-    font-size: clamp(1.6rem, 3.5vw, 3.2rem);
+    font-size: clamp(1.4rem, 3.2vw, 2.8rem);
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.45;
     max-width: 1100px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 2.5rem;
 }
 .m-word {
     display: inline;
@@ -859,32 +849,32 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
     gap: 2rem;
     width: 100%;
     max-width: 1200px;
-    margin: 4rem auto 0;
+    margin: 3.5rem auto 0;
     text-align: left;
 }
 .bio-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: 16px;
-    padding: 2.5rem;
+    padding: 2.2rem;
     backdrop-filter: blur(15px);
     transition: transform 0.3s, border-color 0.3s, background 0.3s;
 }
 .bio-card:hover {
     transform: translateY(-6px);
     border-color: var(--amber);
-    background: rgba(24, 24, 40, 0.7);
+    background: rgba(24, 24, 40, 0.75);
 }
 .bio-num {
     font-family: var(--font-num);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--amber-bright);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 .bio-card h3 {
     font-family: var(--font-head);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -892,14 +882,15 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 }
 .bio-card p {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.6;
 }
 
-/* --- Section 2: Horizontal Scroll Anomalies --- */
+/* --- Section 2: Horizontal Scroll Anomalies (NO OVERLAP) --- */
 #anomalies-wrapper {
-    height: 480vh;
+    height: 460vh;
     position: relative;
+    margin: 4vh 0;
 }
 .anomalies-sticky {
     position: sticky;
@@ -908,30 +899,38 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
     width: 100%;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10vh 0 5vh;
 }
 .anomalies-header {
-    position: absolute;
-    top: 12vh;
-    left: 6vw;
+    position: relative;
+    padding: 0 6vw 1.5rem;
     z-index: 2;
     pointer-events: none;
 }
+.anomalies-header .kicker {
+    margin-bottom: 0.6rem;
+}
+.anomalies-header h2 {
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    margin-bottom: 0;
+}
 .anomalies-track {
     display: flex;
-    gap: 4vw;
+    gap: 2.5vw;
     padding: 0 45vw 0 6vw;
-    height: 65vh;
-    align-items: center;
+    height: 52vh;
+    align-items: stretch;
     will-change: transform;
 }
 .anomaly-card {
-    flex: 0 0 540px;
+    flex: 0 0 480px;
     height: 100%;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    padding: 3rem;
+    border-radius: 18px;
+    padding: 2.4rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -964,47 +963,47 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 }
 .card-code {
     font-family: var(--font-num);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--cyan-bright);
 }
 .card-tag {
     font-family: var(--font-num);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     letter-spacing: 0.2em;
     color: var(--danger-red);
     text-transform: uppercase;
 }
 .card-title {
     font-family: var(--font-head);
-    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+    font-size: clamp(1.25rem, 2vw, 1.8rem);
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.15;
-    margin: 1.2rem 0;
+    margin: 0.8rem 0;
 }
 .card-desc {
     color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 0.98rem;
+    line-height: 1.55;
 }
 .card-metric {
     display: flex;
     align-items: baseline;
     gap: 8px;
     border-top: 1px solid var(--border-subtle);
-    padding-top: 1.2rem;
-    margin-top: 1rem;
+    padding-top: 1rem;
+    margin-top: 0.8rem;
 }
 .metric-val {
     font-family: var(--font-num);
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-weight: 700;
     color: #fff;
 }
 .metric-lbl {
     font-family: var(--font-num);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -1017,15 +1016,15 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, minmax(280px, auto));
+    grid-template-rows: repeat(2, minmax(260px, auto));
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
 }
 .bento-item {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    padding: 2.8rem;
+    border-radius: 18px;
+    padding: 2.4rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1042,7 +1041,7 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 20px;
+    border-radius: 18px;
     padding: 1.5px;
     background: conic-gradient(
         from var(--bento-angle, 0deg),
@@ -1073,8 +1072,8 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 .bento-item:nth-child(4) { grid-column: span 1; }
 
 .bento-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
     background: rgba(245, 158, 11, 0.1);
     border: 1px solid rgba(245, 158, 11, 0.2);
@@ -1082,25 +1081,25 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
     align-items: center;
     justify-content: center;
     color: var(--amber-bright);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 .bento-item h3 {
     font-family: var(--font-head);
-    font-size: clamp(1.2rem, 2vw, 1.7rem);
+    font-size: clamp(1.15rem, 1.8vw, 1.55rem);
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     line-height: 1.2;
 }
 .bento-item p {
     color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 0.98rem;
+    line-height: 1.55;
 }
 
 /* --- Section 4: Planetary Impact Stats Band --- */
 #stats {
-    padding: 10vh 6vw;
+    padding: 8vh 6vw;
     background: rgba(8, 8, 16, 0.6);
     border-top: 1px solid var(--border-subtle);
     border-bottom: 1px solid var(--border-subtle);
@@ -1108,7 +1107,7 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
+    gap: 2.5rem;
 }
 .stat-box {
     display: flex;
@@ -1120,7 +1119,7 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 .stat-box:not(:last-child)::after {
     content: '';
     position: absolute;
-    right: -1.5rem;
+    right: -1.25rem;
     top: 20%;
     height: 60%;
     width: 1px;
@@ -1133,25 +1132,25 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 }
 .stat-number {
     font-family: var(--font-num);
-    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-size: clamp(2.4rem, 4.5vw, 4.5rem);
     font-weight: 700;
     color: #fff;
     line-height: 1;
 }
 .stat-suffix {
     font-family: var(--font-num);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.3rem, 2.5vw, 2.2rem);
     font-weight: 700;
     color: var(--amber-bright);
 }
 .stat-label {
     font-family: var(--font-body);
-    font-size: 0.9rem;
-    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--text-muted);
     font-weight: 600;
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
 }
 
 /* --- Section 5: Bio-Acoustic Audio Synthesizer Lab --- */
@@ -1161,18 +1160,18 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 .synth-board {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    padding: 3.5rem;
+    border-radius: 18px;
+    padding: 3rem;
     backdrop-filter: blur(30px);
-    margin-top: 3rem;
+    margin-top: 2.5rem;
 }
 .synth-channel {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 .synth-channel-header {
     display: flex;
@@ -1181,7 +1180,7 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 }
 .channel-title {
     font-family: var(--font-head);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -1198,12 +1197,12 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
     color: var(--cyan-bright);
 }
 .synth-btn {
-    padding: 1.1rem 2rem;
+    padding: 1rem 1.8rem;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-subtle);
     font-family: var(--font-num);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: #fff;
@@ -1227,29 +1226,29 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
     min-height: 80vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5vw;
+    gap: 4.5vw;
     align-items: center;
 }
 .accord-form-panel {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    padding: 3.5rem;
+    border-radius: 18px;
+    padding: 3rem;
     backdrop-filter: blur(30px);
 }
 .form-group {
     position: relative;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.2rem;
 }
 .form-input {
     width: 100%;
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 0.9rem 0;
+    padding: 0.8rem 0;
     color: #fff;
     font-family: var(--font-body);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 500;
     transition: border-color 0.3s;
 }
@@ -1259,10 +1258,10 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 }
 .form-label {
     position: absolute;
-    top: 0.9rem;
+    top: 0.8rem;
     left: 0;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -1272,18 +1271,18 @@ input[type="range"].emf-range::-webkit-slider-thumb:hover {
 }
 .form-input:focus ~ .form-label,
 .form-input:not(:placeholder-shown) ~ .form-label {
-    transform: translateY(-26px);
+    transform: translateY(-24px);
     color: var(--amber-bright);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
 }
 
 /* --- Footer --- */
 footer {
-    padding: 8rem 6vw 4rem;
+    padding: 6rem 6vw 3.5rem;
     border-top: 1px solid var(--border-subtle);
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -1294,7 +1293,7 @@ footer {
     width: 100%;
     text-align: center;
     font-family: var(--font-head);
-    font-size: clamp(4rem, 10vw, 11rem);
+    font-size: clamp(4rem, 9vw, 10rem);
     font-weight: 700;
     color: rgba(255, 255, 255, 0.02);
     white-space: nowrap;
@@ -1311,7 +1310,7 @@ footer {
 }
 .footer-brand {
     font-family: var(--font-head);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -1339,28 +1338,32 @@ footer {
 }
 
 /* --- Responsive Adaptations --- */
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
     .nav-telemetry { display: none; }
-    .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 2.5rem; }
+    .anomalies-sticky { padding: 12vh 0 4vh; }
+    .anomalies-track { height: 50vh; gap: 3vw; }
+    .anomaly-card { flex: 0 0 75vw; padding: 1.8rem; }
+}
+
+@media (max-width: 900px) {
     .bio-grid { grid-template-columns: 1fr; }
     .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
     .bento-item:nth-child(n) { grid-column: span 1; grid-row: span 1; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
     .stat-box:not(:last-child)::after { display: none; }
     .synth-board { grid-template-columns: 1fr; }
     #accord { grid-template-columns: 1fr; }
-    .anomalies-track { padding: 0 25vw 0 5vw; }
-    .anomaly-card { flex: 0 0 78vw; height: 60vh; padding: 2rem; }
     #cursor-dot, #cursor-ring, #cursor-view-label, #cursor-trail { display: none !important; }
 }
 
 @media (max-width: 600px) {
-    section { padding: 12vh 5vw; }
-    .hero-title { font-size: clamp(2rem, 10vw, 3.5rem); }
-    h2 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+    section { padding: 10vh 5vw; }
+    .hero-title { font-size: clamp(2rem, 9vw, 3.2rem); }
+    h2 { font-size: clamp(1.6rem, 7.5vw, 2.4rem); }
     .stats-grid { grid-template-columns: 1fr; }
-    .footer-inner { flex-direction: column; gap: 2rem; text-align: center; }
-    .hero-emf-panel { padding: 1.5rem; }
+    .footer-inner { flex-direction: column; gap: 1.8rem; text-align: center; }
+    .hero-emf-panel { padding: 1.4rem; }
     .emf-cta-row { flex-direction: column; }
     .btn-primary, .btn-secondary { width: 100%; }
 }
