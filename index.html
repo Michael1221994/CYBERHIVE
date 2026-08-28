@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030305">
+    <title>CYBERHIVE // The Disrupted Waggle — AI Datacenters & Pollination Collapse</title>
+    
+    <!-- SEO & Metadata -->
+    <meta name="description" content="An immersive 3D interactive investigation into how high-power AI datacenters and electromagnetic fields (EMF) are disrupting honeybee waggle dances, geomagnetic navigation, and global pollination.">
+    <meta name="keywords" content="honeybees, waggle dance, AI datacenters, electromagnetic radiation, EMF, biomagnetism, pollination crisis, Three.js 3D web experience">
+    <meta name="author" content="CYBERHIVE Bio-Acoustics Initiative">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CYBERHIVE // The Disrupted Waggle">
+    <meta property="og:description" content="Explore how gigawatt AI infrastructure disrupts honeybee navigation and the delicate mathematics of pollination.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Import Map for Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- Master Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+    <!-- Preloader -->
+    <div id="preloader" role="status" aria-live="polite">
+        <div class="loader-hexagon">
+            <svg viewBox="0 0 100 100">
+                <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z"></path>
+            </svg>
+        </div>
+        <div class="loader-brand">CYBERHIVE // APIS ELEKTRA</div>
+        <div id="loader-percent">0%</div>
+        <div class="loader-bar-wrap">
+            <div id="loader-bar-fill"></div>
+        </div>
+        <div class="loader-status">Calibrating Biomagnetic Transceivers...</div>
+    </div>
+
+    <!-- Atmospheric Layers -->
+    <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+    <div class="film-grain" aria-hidden="true"></div>
+    <div id="god-rays" aria-hidden="true"></div>
+    <div id="scene-vignette" aria-hidden="true"></div>
+    <div class="letterbox letterbox-top" aria-hidden="true"></div>
+    <div class="letterbox letterbox-bottom" aria-hidden="true"></div>
+    <div id="global-progress" aria-hidden="true"></div>
+    <div id="page-wipe" aria-hidden="true"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+    <div id="cursor-view-label" aria-hidden="true">Interact</div>
+    <canvas id="cursor-trail" aria-hidden="true"></canvas>
+
+    <!-- Header Navigation -->
+    <nav role="navigation" aria-label="Main Navigation">
+        <a href="#hero" class="brand-logo" data-cursor="HIVE">
+            <div class="brand-node" aria-hidden="true"></div>
+            <span>CYBERHIVE</span>
+        </a>
+
+        <div class="nav-telemetry" aria-label="Live Telemetry Data">
+            <div class="telemetry-pill">
+                <div class="telemetry-indicator" aria-hidden="true"></div>
+                <span>EMF LOAD: <strong class="telemetry-value" id="nav-emf-val">0 MW</strong></span>
+            </div>
+            <div class="telemetry-pill">
+                <div class="telemetry-indicator cyan" aria-hidden="true"></div>
+                <span>EARTH B-FIELD: <strong class="telemetry-value">48.2 µT</strong></span>
+            </div>
+            <div class="telemetry-pill">
+                <span>FREQ: <strong class="telemetry-value">250 Hz // 60 Hz</strong></span>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button id="sound-toggle" class="muted" aria-label="Toggle Bio-Acoustic Sound Synthesizer" data-cursor="SYNTH">
+                <div class="sound-bars" aria-hidden="true">
+                    <div class="sound-bar"></div>
+                    <div class="sound-bar"></div>
+                    <div class="sound-bar"></div>
+                    <div class="sound-bar"></div>
+                </div>
+                <span>BIO-SYNTH</span>
+            </button>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="m-nav-links">
+            <a href="#hero" class="m-nav-item">Telemetry</a>
+            <a href="#manifesto" class="m-nav-item">Bio-Magnetics</a>
+            <a href="#anomalies-wrapper" class="m-nav-item">The 4 Anomalies</a>
+            <a href="#mitigation" class="m-nav-item">Mitigation Matrix</a>
+            <a href="#stats" class="m-nav-item">Planetary Impact</a>
+            <a href="#audio-lab" class="m-nav-item">Sound Lab</a>
+            <a href="#accord" class="m-nav-item">The Accord</a>
+        </div>
+        <div class="telemetry-pill" style="margin-top: 2rem;">
+            <span>STATUS: BIO-TELEMETRY ACTIVE</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- 1. Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <div>
+                    <div class="kicker">PROJECT APIS ELEKTRA // GIGAWATT PULSE DISRUPTION</div>
+                    <h1 class="hero-title">
+                        THE DISRUPTED <br>
+                        <span class="glow-amber">WAGGLE</span> &amp; <span class="glow-cyan">SILICON</span>
+                    </h1>
+                    <p class="hero-lead">
+                        For 100 million years, honeybees have navigated Earth’s geomagnetic web using nanoscale magnetite transceivers and their iconic 8-figure Waggle Dance. Now, gigawatt AI compute clusters and electromagnetic plumes are severing their biological GPS.
+                    </p>
+                </div>
+
+                <!-- Live EMF Disruption Interactive Panel -->
+                <div class="hero-emf-panel">
+                    <div class="emf-header">
+                        <span class="emf-title">Datacenter Compute Plume</span>
+                        <span class="emf-readout" id="emf-readout">0 MW // 0.0 µT</span>
+                    </div>
+                    <div class="emf-slider-wrap">
+                        <input type="range" id="emf-slider" class="emf-range" min="0" max="500" value="0" step="5" aria-label="Simulated AI Datacenter Power Load">
+                    </div>
+                    <div class="emf-labels">
+                        <span>0 MW (Natural Calm)</span>
+                        <span>250 MW (Cluster Peak)</span>
+                        <span>500 MW (AI Supercluster)</span>
+                    </div>
+                    <div class="emf-cta-row">
+                        <button class="btn-primary" id="btn-simulate-surge" data-cursor="SURGE">
+                            <span>Simulate Surge ⚡</span>
+                        </button>
+                        <button class="btn-secondary" id="btn-calibrate" data-cursor="RESET">
+                            <span>Calibrate To 0 MW</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Manifesto / Biological Marvel -->
+        <section id="manifesto">
+            <div class="kicker">THE SACRED BIO-TELEMETRY PROTOCOL</div>
+            <p class="manifesto-lead">
+                The Waggle Dance is not mere motion. It is an astronomical vector calculator encoding distance, solar azimuth, and geomagnetic coordinates into 250Hz abdominal vibrations. When artificial gigawatt frequencies saturate the biosphere, this sacred language degrades into chaotic static.
+            </p>
+            <div class="section-divider" style="margin: 0 auto 3rem;"></div>
+
+            <div class="bio-grid">
+                <div class="bio-card" data-cursor="INSPECT">
+                    <div class="bio-num">01 // SENSORY</div>
+                    <h3>Abdominal Magnetite</h3>
+                    <p>Sub-micron ferrimagnetic Fe3O4 crystals in abdominal segment VI act as an organic magnetometer, aligning bees to Earth's 30–60 µT magnetic flux.</p>
+                </div>
+                <div class="bio-card" data-cursor="INSPECT">
+                    <div class="bio-num">02 // TELEMETRY</div>
+                    <h3>The 8-Figure Vector</h3>
+                    <p>The angle between the dance run and vertical gravity corresponds to the flight azimuth relative to the sun, with 1 second of waggle translating to ~1,000m.</p>
+                </div>
+                <div class="bio-card" data-cursor="INSPECT">
+                    <div class="bio-num">03 // ACOUSTICS</div>
+                    <h3>250 Hz Thoracic Tone</h3>
+                    <p>During the waggle run, thoracic flight muscles emit a calibrated acoustic pulse at 250–300 Hz, received by sisters via Johnston’s organs in their antennae.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Horizontal Scroll Anomalies Track -->
+        <div id="anomalies-wrapper">
+            <div class="anomalies-sticky">
+                <div class="anomalies-header">
+                    <div class="kicker">RECORDED FREQUENCY ANOMALIES</div>
+                    <h2>THE 4 COLLISION NODES</h2>
+                </div>
+                <div class="anomalies-track">
+                    <!-- Card 1 -->
+                    <div class="anomaly-card" data-cursor="DEEP-DIVE">
+                        <div class="card-top">
+                            <span class="card-code">NODE // 01</span>
+                            <span class="card-tag">FLAVOPROTEIN JAMMING</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Cryptochrome Photo-Disruption</h3>
+                            <p class="card-desc">High-frequency RF emissions (900MHz–5.8GHz) disrupt the radical pair spin states in retinal cryptochrome Cry2, blinding bees to geomagnetic inclination.</p>
+                        </div>
+                        <div class="card-metric">
+                            <span class="metric-val">84%</span>
+                            <span class="metric-lbl">Cryptochrome Alignment Loss Under 100 µT</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="anomaly-card" data-cursor="DEEP-DIVE">
+                        <div class="card-top">
+                            <span class="card-code">NODE // 02</span>
+                            <span class="card-tag">MAGNETIC RESONANCE</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Antennal Torque Overload</h3>
+                            <p class="card-desc">Low-frequency 50/60Hz electromagnetic fields from substation transformers induce mechanical torque on antenna magnetite clusters, creating phantom magnetic heading signals.</p>
+                        </div>
+                        <div class="card-metric">
+                            <span class="metric-val">5,200 µT</span>
+                            <span class="metric-lbl">Peak Transformer Plume Near 500kV Lines</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="anomaly-card" data-cursor="DEEP-DIVE">
+                        <div class="card-top">
+                            <span class="card-code">NODE // 03</span>
+                            <span class="card-tag">TELEMETRY SCRAMBLE</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title">The Scrambled Waggle Angle</h3>
+                            <p class="card-desc">Foragers exposed to datacenter grid radiation execute dances with up to 38° azimuth error, misdirecting hive recruitment into barren dead zones.</p>
+                        </div>
+                        <div class="card-metric">
+                            <span class="metric-val">38.4°</span>
+                            <span class="metric-lbl">Mean Angular Variance Under Active Cluster Load</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="anomaly-card" data-cursor="DEEP-DIVE">
+                        <div class="card-top">
+                            <span class="card-code">NODE // 04</span>
+                            <span class="card-tag">ECOLOGICAL CASCADE</span>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Hive Desynchronization &amp; Loss</h3>
+                            <p class="card-desc">When foragers fail to return, hive thermoregulation collapses, brood rearing stops, and local flora suffer severe pollination deficits.</p>
+                        </div>
+                        <div class="card-metric">
+                            <span class="metric-val">62%</span>
+                            <span class="metric-lbl">Reduction in Return Flight Success Rates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Bento Box Mitigation Matrix -->
+        <section id="mitigation">
+            <div class="kicker">CYBER-BIO ARCHITECTURE</div>
+            <h2>THE MITIGATION PROTOCOL</h2>
+            <div class="section-divider"></div>
+
+            <div class="bento-grid">
+                <div class="bento-item" data-cursor="EXPLORE">
+                    <div>
+                        <div class="bento-icon">🛡️</div>
+                        <h3>Faraday-Shielded Compute Pods</h3>
+                        <p>Deploying high-permeability Mu-metal and superconducting graphene enclosures around ultra-high voltage transformers to attenuate low-frequency magnetic leakage by 99.4%.</p>
+                    </div>
+                    <div style="font-family: var(--font-num); font-size: 0.72rem; color: var(--amber-bright); letter-spacing: 0.15em; margin-top: 2rem;">
+                        STANDARD // IEEE-EMF-BIO-2026
+                    </div>
+                </div>
+
+                <div class="bento-item" data-cursor="EXPLORE">
+                    <div>
+                        <div class="bento-icon">🌿</div>
+                        <h3>Bio-Acoustic Sanctuary Corridors</h3>
+                        <p>Mandating 5-kilometer electromagnetic exclusion buffer zones around major agricultural flyways and commercial apiaries to preserve undisturbed foraging vectors.</p>
+                    </div>
+                    <div style="font-family: var(--font-num); font-size: 0.72rem; color: var(--cyan-bright); letter-spacing: 0.15em; margin-top: 2rem;">
+                        RADIUS // 5.0 KM EXCLUSION
+                    </div>
+                </div>
+
+                <div class="bento-item" data-cursor="EXPLORE">
+                    <div>
+                        <div class="bento-icon">⏱️</div>
+                        <h3>Diurnal AI Training Throttling</h3>
+                        <p>Algorithmically scheduling compute-heavy LLM training batches during nocturnal hours when honeybee foragers are inactive inside insulated hive chambers.</p>
+                    </div>
+                </div>
+
+                <div class="bento-item" data-cursor="EXPLORE">
+                    <div>
+                        <div class="bento-icon">⚡</div>
+                        <h3>Edge Micro-Grid Distribution</h3>
+                        <p>Shifting from massive centralized 1-Gigawatt compute campuses to decentralized low-voltage micro-hubs that avoid extreme localized magnetic plumes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Planetary Impact Stats Band -->
+        <section id="stats">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-num-row">
+                        <span class="stat-number" data-target="75">0</span>
+                        <span class="stat-suffix">%</span>
+                    </div>
+                    <span class="stat-label">Global Crops Dependent on Pollinators</span>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num-row">
+                        <span class="stat-number" data-target="14.2" data-float="true">0</span>
+                        <span class="stat-suffix">GW</span>
+                    </div>
+                    <span class="stat-label">New Compute Capacity in Agro-Belts</span>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num-row">
+                        <span class="stat-number" data-target="38">0</span>
+                        <span class="stat-suffix">°</span>
+                    </div>
+                    <span class="stat-label">Average Waggle Angle Deviation</span>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num-row">
+                        <span class="stat-suffix">$</span>
+                        <span class="stat-number" data-target="577">0</span>
+                        <span class="stat-suffix">B</span>
+                    </div>
+                    <span class="stat-label">Annual Food Security Value at Risk</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Bio-Acoustic Audio Synthesizer Lab -->
+        <section id="audio-lab">
+            <div class="kicker">INTERACTIVE FREQUENCY SYNTHESIZER</div>
+            <h2>ACOUSTIC COLLISION LAB</h2>
+            <p style="color: var(--text-muted); max-width: 680px; margin-bottom: 2rem;">
+                Experience the visceral acoustic dissonance between natural organic bee flight resonance (250Hz) and artificial high-voltage power transformer hum (60Hz).
+            </p>
+
+            <div class="synth-board">
+                <div class="synth-channel">
+                    <div class="synth-channel-header">
+                        <span class="channel-title">Bio-Flight Resonance</span>
+                        <span class="channel-tag">250 HZ // NATURAL</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Pure harmonic frequency generated by Apis mellifera thoracic wing oscillations during foraging and waggle communication.</p>
+                    <button class="synth-btn" id="audition-bee" data-cursor="LISTEN">
+                        <span>Audition 250Hz Tone</span>
+                        <span>▶</span>
+                    </button>
+                </div>
+
+                <div class="synth-channel">
+                    <div class="synth-channel-header">
+                        <span class="channel-title">Datacenter Grid Plume</span>
+                        <span class="channel-tag cyan">60 HZ // ANTHROPOGENIC</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Low-frequency sub-bass hum generated by high-voltage transformer substations feeding AI GPU clusters.</p>
+                    <button class="synth-btn cyan-btn" id="audition-emf" data-cursor="LISTEN">
+                        <span>Audition 60Hz Hum</span>
+                        <span>▶</span>
+                    </button>
+                </div>
+
+                <div style="grid-column: 1 / -1; border-top: 1px solid var(--border-subtle); padding-top: 2rem;">
+                    <button class="btn-primary" id="audition-collision" style="width: 100%; justify-content: space-between;" data-cursor="DISRUPT">
+                        <span>Audition Frequency Collision &amp; Dissonance</span>
+                        <span>⚡ CRITICAL OVERLAY</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Action & Accord -->
+        <section id="accord">
+            <div>
+                <div class="kicker">OPEN PROTOCOL INITIATIVE</div>
+                <h2>SIGN THE ECOLOGICAL COMPUTE ACCORD</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">
+                    Join over 1,200 AI engineers, apiarists, bio-physicists, and sustainability leaders demanding standardized electromagnetic shielding and wildlife corridors for next-generation datacenters.
+                </p>
+                <div class="telemetry-pill" style="width: fit-content;">
+                    <span>STATUS: 1,284 SIGNATORIES WORLDWIDE</span>
+                </div>
+            </div>
+
+            <div class="accord-form-panel">
+                <form onsubmit="event.preventDefault(); alert('Thank you for signing the Ecological Compute Accord. Telemetry briefing dispatched.');">
+                    <div class="form-group">
+                        <input type="text" id="signer-name" class="form-input" placeholder=" " required>
+                        <label for="signer-name" class="form-label">Full Name / Organization</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signer-email" class="form-input" placeholder=" " required>
+                        <label for="signer-email" class="form-label">Engineering / Research Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="signer-role" class="form-input" placeholder=" " required>
+                        <label for="signer-role" class="form-label">Discipline (AI, Apiology, Grid Architecture)</label>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;" data-cursor="SIGN">
+                        <span>Sign Accord &amp; Access Dataset →</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-watermark" aria-hidden="true">CYBERHIVE // 2026</div>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">CYBERHIVE // APIS ELEKTRA</div>
+                <div class="footer-copy">Global Open Bio-Acoustic &amp; Electromagnetic Monitoring Network</div>
+            </div>
+            <div class="footer-links">
+                <a href="#hero" data-cursor="TOP">Back to Top ↑</a>
+                <a href="https://github.com/Michael1221994/CYBERHIVE" target="_blank" rel="noopener" data-cursor="CODE">GitHub Repo</a>
+                <a href="#accord" data-cursor="ACCORD">The Accord</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Module Entry Point -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
