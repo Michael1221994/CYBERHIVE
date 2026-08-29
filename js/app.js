@@ -321,6 +321,13 @@ function initMobileMenu() {
     }
 
     ham.addEventListener('click', () => toggleMenu());
+    
+    // Close button inside the mobile menu
+    const closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => toggleMenu(false));
+    }
+    
     menu.querySelectorAll('.m-nav-item').forEach(link => {
         link.addEventListener('click', () => toggleMenu(false));
     });
